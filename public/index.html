@@ -1,31 +1,125 @@
 
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" data-theme="royal">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>StudyHub AI GOAT</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Real StudyHub AI GOAT — Learn Programming</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+<canvas id="stars"></canvas><div class="noise"></div><div class="cursor-dragon"></div>
 
-<div class="hero">
-  <h1>StudyHub AI GOAT</h1>
-  <p>Real Coding Learning Platform</p>
+<nav class="nav">
+  <a class="logo" href="#">StudyHub<span>AI</span></a>
+  <div class="navlinks">
+    <a href="#learn">Learn</a><a href="#practice">Practice</a><a href="#ai">AI Tutor</a><a href="#roadmap">Roadmap</a>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center">
+    <select id="langSelect" class="lang-select">
+      <option value="python">Python</option><option value="javascript">JavaScript</option><option value="php">PHP</option><option value="cpp">C++</option><option value="java">Java</option><option value="csharp">C#</option><option value="html">HTML</option><option value="css">CSS</option><option value="sql">SQL</option>
+    </select>
+    <select id="themeSelect" class="theme-select">
+      <option value="royal">Royal OG</option><option value="dragon">Dragon Fire</option><option value="matrix">Matrix</option><option value="ice">Cyber Ice</option>
+    </select>
+  </div>
+</nav>
 
-  <select id="language">
-    <option value="python">Python</option>
-    <option value="javascript">JavaScript</option>
-    <option value="php">PHP</option>
-  </select>
+<header class="hero">
+  <div>
+    <div class="badge"><span class="dot"></span> Real deployable learning platform</div>
+    <h1>Learn coding with <span class="grad">AI, animation & practice.</span></h1>
+    <p>A beginner-friendly StudyHub for Computer Science students. Select a language, understand the concept visually, practice code, ask the AI tutor, and follow a clear roadmap.</p>
+    <div class="actions">
+      <a class="btn primary" href="#learn">Start Learning →</a>
+      <a class="btn" href="#ai">Ask AI Tutor</a>
+      <button class="btn" id="certBtn">Generate Certificate</button>
+    </div>
+  </div>
+  <div class="orbit" aria-label="Animated tech orbit">
+    <div class="tech t1">🐍 Python</div><div class="tech t2">⚡ JavaScript</div><div class="tech t3">🐘 PHP</div><div class="tech t4">🧠 C++</div><div class="tech t5">🗄️ SQL</div>
+    <div class="core"><div><h2>StudyHub Core</h2><p>Concept → Example → Practice → AI Help → Project</p></div></div>
+  </div>
+</header>
 
-  <textarea id="code">print("Hello Srijon")</textarea>
+<section class="section reveal" id="learn">
+  <div class="head">
+    <div><h2>Animated Learning Lab</h2><p>Choose any language and the lesson, code, visual explanation, and AI tutor context will change instantly.</p></div>
+  </div>
+  <div class="lab">
+    <aside class="sidebar"><div id="lessonButtons"></div></aside>
+    <main class="card big-card learn-panel">
+      <span class="tag" id="lessonLevel">Best first language</span>
+      <h2 id="lessonTitle" style="font-family:Space Grotesk;font-size:42px;margin:14px 0 8px">Python</h2>
+      <p id="lessonWhy" style="color:var(--muted);line-height:1.8"></p>
+      <div class="concept">
+        <div>
+          <h3>Beginner Method</h3>
+          <ol id="lessonPoints"></ol>
+          <p style="color:var(--muted);line-height:1.75">Learn like this: first understand what the code means, then edit one line, then run, then build a tiny project.</p>
+        </div>
+        <div class="visual-box">
+          <div class="flow-node n1">Input</div><div class="flow-node n2">Logic</div><div class="flow-node n3">Output</div>
+          <strong id="visualText" style="z-index:3;text-align:center;font-size:22px;max-width:70%"></strong>
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
 
-  <button onclick="runCode()">Run Code</button>
+<section class="section reveal" id="practice">
+  <div class="head">
+    <div><h2>Practice Console</h2><p>JavaScript runs directly. HTML and CSS show live preview. Other languages are ready for real compiler API connection through backend.</p></div>
+  </div>
+  <div class="editor">
+    <div class="codebox">
+      <div class="toolbar"><strong>Code Editor</strong><div><button class="btn" id="copyBtn">Copy</button><button class="btn" id="resetBtn">Reset</button><button class="btn primary" id="runBtn">Run</button></div></div>
+      <textarea id="code"></textarea>
+    </div>
+    <div class="output">
+      <div class="toolbar"><strong>Output / Preview</strong><span class="tag">Console</span></div>
+      <pre id="output">Click Run to see output...</pre>
+    </div>
+  </div>
+</section>
 
-  <pre id="output"></pre>
-</div>
+<section class="section reveal" id="ai">
+  <div class="head">
+    <div><h2>AI Programming Tutor</h2><p>Real backend-powered AI chatbot. Add your Gemini API key in `.env`, deploy the Node server, and the tutor becomes live.</p></div>
+  </div>
+  <div class="chat-layout">
+    <div class="chatbox">
+      <div class="toolbar"><strong>StudyHub AI Tutor</strong><span class="tag">Language: <b id="chatLang">Python</b></span></div>
+      <div class="messages" id="messages">
+        <div class="msg bot">Hi! Select a programming language and ask me anything. I can explain concepts, fix beginner mistakes, and give mini projects.</div>
+      </div>
+      <div class="chat-input"><input id="chatInput" placeholder="Ask: Explain loops with animation idea..." /><button class="btn primary" id="sendBtn">Send</button></div>
+    </div>
+    <div class="grid cards">
+      <div class="card"><div class="icon">🤖</div><h3>Real AI Backend</h3><p>Uses Node.js + Gemini API proxy, so your API key stays private.</p></div>
+      <div class="card"><div class="icon">🧪</div><h3>Smart Prompts</h3><p>AI knows selected language and teaches like a beginner-friendly CS tutor.</p></div>
+    </div>
+  </div>
+</section>
 
-<script src="script.js"></script>
+<section class="section reveal" id="roadmap">
+  <div class="head"><div><h2>Beginner Roadmap</h2><p>A clear path for new Computer Science students.</p></div></div>
+  <div class="grid cards">
+    <div class="card"><div class="icon">1️⃣</div><h3>Foundation</h3><p>HTML, CSS, basic JavaScript, Python basics, variables, loops, conditionals.</p></div>
+    <div class="card"><div class="icon">2️⃣</div><h3>Core CS</h3><p>C/C++ basics, problem solving, data structures, algorithms, OOP.</p></div>
+    <div class="card"><div class="icon">3️⃣</div><h3>Backend</h3><p>PHP/Node.js, database with SQL, login system, REST APIs.</p></div>
+    <div class="card"><div class="icon">4️⃣</div><h3>Projects</h3><p>Portfolio, quiz app, study tracker, chatbot, Discord community integration.</p></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <span>© <span id="year"></span> Real StudyHub AI GOAT</span>
+  <span>Built for beginner CSE students · Smooth animated platform</span>
+</footer>
+
+<script src="./app.js"></script>
 </body>
 </html>
